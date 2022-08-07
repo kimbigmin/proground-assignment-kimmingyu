@@ -8,7 +8,17 @@ export const Layout = styled.article<{ type: string }>`
   flex-direction: column;
   justify-content: space-around;
   height: 6rem;
+  border-radius: 5px;
   padding: ${(props) => (props.type === "dailyScore" ? "0rem 0 1rem" : "1rem")};
+  box-shadow: ${(props) =>
+    props.type === "estimatedWalk" ? "rgba(0, 0, 0, 0.08) 0px 4px 12px" : ""};
+
+  background: ${(props) =>
+    props.type === "estimatedWalk" ? "rgb(255, 255, 255)" : ""};
+  background: ${(props) =>
+    props.type === "estimatedWalk"
+      ? `linear-gradient(180deg, rgba(255,255,255,1) 75%, rgba(239,178,197,0.6587228641456583) 100%)`
+      : ""};
 
   .walk-number {
     font-size: 1.4rem;

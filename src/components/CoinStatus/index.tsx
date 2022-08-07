@@ -9,15 +9,15 @@ function CoinStatus() {
     <Style.Layout>
       <li>
         <CurrencyBitcoinIcon fontSize="small" color="warning" />
-        {"12.4"}
+        <p>{"12.4"}</p>
       </li>
       <li>
         <MonetizationOnIcon fontSize="small" color="success" />
-        {"12.3"}
+        <p>{"12.4"}</p>
       </li>
       <li>
         <CookieIcon fontSize="small" />
-        {"12.3"}
+        <p>{"12.4"}</p>
       </li>
     </Style.Layout>
   );

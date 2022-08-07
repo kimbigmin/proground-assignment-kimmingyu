@@ -1,6 +1,8 @@
 import React from "react";
 import * as Style from "./style";
 import Gauge from "../Gauge";
+import coin from "../../assets/coin.png";
+import styled from "styled-components";
 
 function StatusBox({
   type,
@@ -39,8 +41,57 @@ function StatusBox({
       {statusType[type].bottomText && (
         <p className="bottom-text">{statusType[type].bottomText}</p>
       )}
+      {type === "estimatedWalk" && (
+        <CoinAnimation>
+          <img src={coin} className="coin1" alt="coin" />
+          <img src={coin} className="coin2" alt="coin" />
+        </CoinAnimation>
+      )}
     </Style.Layout>
   );
 }
+
+const CoinAnimation = styled.div`
+  position: relative;
+  bottom: 3rem;
+  left: 4rem;
+
+  .coin1 {
+    position: absolute;
+    width: 90px;
+    top: -2rem;
+    right: 5.5rem;
+    animation-name: coinAnimation;
+    animation-duration: 1s;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+    animation-direction: alternate-reverse;
+    z-index: 4;
+  }
+
+  .coin2 {
+    position: absolute;
+    width: 60px;
+    top: -2rem;
+    right: 4rem;
+    animation-name: coinAnimation;
+    animation-duration: 2s;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+    z-index: 3;
+  }
+
+  @keyframes coinAnimation {
+    0% {
+      top: -25px;
+    }
+    100% {
+      top: -35px;
+    }
+  }
+`;
 
 export default StatusBox;

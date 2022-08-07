@@ -17,4 +17,10 @@ export const Layout = styled.header`
     width: 13rem;
     justify-content: space-around;
   }
+
+  .page-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 auto;
+  }
 `;
