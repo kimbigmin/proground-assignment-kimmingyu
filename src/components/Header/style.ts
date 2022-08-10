@@ -5,6 +5,7 @@ export const Layout = styled.header`
   display: flex;
   position: sticky;
   top: 0;
+  left: 0;
   justify-content: space-between;
   padding: 1rem;
   align-items: center;

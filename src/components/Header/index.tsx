@@ -1,17 +1,21 @@
 import * as React from "react";
-import { useState } from "react";
 import * as Style from "./style";
 import CoinStatus from "../CoinStatus";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Header() {
-  const [currentPage, setCurrentPage] = useState("home");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const pageBackHandler = () => navigate(-1);
+
+  const state = location.state as { title: string };
 
   return (
     <Style.Layout>
-      {currentPage === "home" && (
+      {location.pathname === "/" ? (
         <>
           <PersonOutlineOutlinedIcon />
           <div className="account-box">
@@ -19,11 +23,10 @@ function Header() {
             <AccountBalanceWalletOutlinedIcon fontSize="medium" />
           </div>
         </>
-      )}
-      {currentPage === "board" && (
+      ) : (
         <>
-          <ArrowBackIosNewIcon fontSize="small" />
-          <h2 className="page-title">Leader Board</h2>
+          <ArrowBackIosNewIcon fontSize="small" onClick={pageBackHandler} />
+          <h2 className="page-title">{state.title}</h2>
         </>
       )}
     </Style.Layout>

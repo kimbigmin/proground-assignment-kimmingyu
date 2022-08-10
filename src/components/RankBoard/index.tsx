@@ -5,13 +5,13 @@ import UserList from "../UserList";
 import Title from "../Title";
 import axios from "axios";
 
-function RankBoard() {
+function RankBoard({ isForHome }: { isForHome: boolean }) {
   const [rank, setRank] = useState([]);
 
   const getRank = async () => {
     try {
       const res = await axios(
-        `https://mxl2ywa4zhlvwjymvb5gnc247a0qfndn.lambda-url.ap-northeast-2.on.aws/?limit=${30}&offset=${500}`
+        `https://mxl2ywa4zhlvwjymvb5gnc247a0qfndn.lambda-url.ap-northeast-2.on.aws/?limit=${10}&offset=${500}`
       );
       if (res.status === 200) {
         setRank(res.data);
@@ -27,10 +27,12 @@ function RankBoard() {
     getRank();
   }, []);
 
-  const userLists = rank.map((el: any) => <UserList userData={el}></UserList>);
+  const userLists = rank.map((el: any, idx) => (
+    <UserList userData={{ ...el, idx }}></UserList>
+  ));
   return (
-    <Style.Layout>
-      <Title title="Leader Board" moreBtn="View All" />
+    <Style.Layout isForHome={isForHome}>
+      {isForHome ? <Title title="Leader Board" moreBtn="View All" /> : null}
       <div className="rank-container">{userLists}</div>
     </Style.Layout>
   );

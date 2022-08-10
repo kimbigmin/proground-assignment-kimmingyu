@@ -4,7 +4,6 @@ export const Layout = styled.nav`
   max-width: 100%;
   display: flex;
   position: sticky;
-  left: 0;
   bottom: 0;
   padding: 1rem;
   align-items: center;

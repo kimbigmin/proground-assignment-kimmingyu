@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const Layout = styled.section`
-  max-width: 90%;
+export const Layout = styled.section<{ isForHome: boolean }>`
+  ${(props) => (props.isForHome ? "max-width: 90%" : "max-width: 100%")};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,6 +12,7 @@ export const Layout = styled.section`
   .rank-container {
     width: 100%;
     border-radius: 5px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: ${(props) =>
+      props.isForHome ? "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" : "null"};
   }
 `;

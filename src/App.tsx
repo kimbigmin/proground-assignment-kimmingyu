@@ -1,21 +1,22 @@
 import React from "react";
 import GlobalStyle from "./GlobalStyle";
 import Header from "./components/Header";
-import Navbar from "./components/Navbar";
-import RankBoard from "./components/RankBoard";
-import DailyScore from "./components/DailyScore";
-import EstimatedWalk from "./components/EstimatedWalk";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import LeaderBoard from "./pages/LeaderBoard";
 
 function App() {
   return (
-    <>
+    <div className="App">
       <GlobalStyle />
-      <Header />
-      <DailyScore />
-      <EstimatedWalk />
-      <RankBoard />
-      <Navbar />
-    </>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/leader-board" element={<LeaderBoard />}></Route>
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

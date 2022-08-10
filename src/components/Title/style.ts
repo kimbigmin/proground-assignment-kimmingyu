@@ -13,7 +13,7 @@ export const Layout = styled.div`
     font-weight: 700;
   }
 
-  .more-Btn {
+  .more-view {
     font-size: 0.8rem;
     width: 5rem;
     background-color: transparent;
@@ -21,5 +21,8 @@ export const Layout = styled.div`
     padding: 0;
     text-align: right;
     cursor: pointer;
+    color: black;
+    text-decoration: none;
+    list-style: none;
   }
 `;
