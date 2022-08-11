@@ -4,7 +4,7 @@ import { setBlock } from "../../features/users/usersSlice";
 import { useDispatch } from "react-redux";
 import block from "../../assets/block.png";
 
-function Profile({
+function PopupProfile({
   userData,
   setIsOpenProfile,
 }: {
@@ -46,4 +46,4 @@ function Profile({
   );
 }
 
-export default Profile;
+export default PopupProfile;

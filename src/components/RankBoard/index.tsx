@@ -5,7 +5,7 @@ import Title from "../Title";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserData, setPage } from "../../features/users/usersSlice";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Profile from "../Profile";
+import Profile from "../PopupProfile";
 import CircularProgress from "@mui/material/CircularProgress";
 
 function RankBoard({ isForHome }: { isForHome: boolean }) {
