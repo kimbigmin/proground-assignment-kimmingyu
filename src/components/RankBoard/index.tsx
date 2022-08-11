@@ -1,39 +1,59 @@
 import React from "react";
-import { useState, useEffect } from "react";
+
 import * as Style from "./style";
 import UserList from "../UserList";
 import Title from "../Title";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getUserData, setPage } from "../../features/users/usersSlice";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function RankBoard({ isForHome }: { isForHome: boolean }) {
-  const [rank, setRank] = useState([]);
+  const rank = useSelector((state: any) => state.users.userList);
+  const hasMore = useSelector((state: any) => state.users.hasMore);
+  const page = useSelector((state: any) => state.users.currentPage);
+  const dispatch = useDispatch();
 
-  const getRank = async () => {
-    try {
-      const res = await axios(
-        `https://mxl2ywa4zhlvwjymvb5gnc247a0qfndn.lambda-url.ap-northeast-2.on.aws/?limit=${10}&offset=${500}`
-      );
-      if (res.status === 200) {
-        setRank(res.data);
-      } else {
-        throw new Error("데이터를 정상적으로 받아오지 못했습니다.");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const copyRank = isForHome ? [...rank].slice(0, 10) : [...rank];
 
-  useEffect(() => {
-    getRank();
-  }, []);
-
-  const userLists = rank.map((el: any, idx) => (
+  const userLists = copyRank.map((el: any, idx: number) => (
     <UserList userData={{ ...el, idx }}></UserList>
   ));
+
+  useEffect(() => {
+    if (rank.length === 0) {
+      dispatch(getUserData(0));
+    }
+  }, []);
+
+  const fetchUsers = () => {
+    setTimeout(() => {
+      if (hasMore) {
+        dispatch(setPage());
+        dispatch(getUserData(page));
+      }
+    }, 1000);
+  };
+
+  const userListForBoard = rank ? (
+    <InfiniteScroll
+      dataLength={rank.length}
+      next={fetchUsers}
+      hasMore={hasMore}
+      loader={<h4>Loading...</h4>}
+    >
+      {userLists}
+    </InfiniteScroll>
+  ) : (
+    <h3>No Records</h3>
+  );
+
   return (
     <Style.Layout isForHome={isForHome}>
       {isForHome ? <Title title="Leader Board" moreBtn="View All" /> : null}
-      <div className="rank-container">{userLists}</div>
+      <div className="rank-container">
+        {isForHome ? userLists : userListForBoard}
+      </div>
     </Style.Layout>
   );
 }
