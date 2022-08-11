@@ -6,7 +6,6 @@ import userSaga from "./features/users/saga";
 import logger from "redux-logger";
 import { combineReducers } from "@reduxjs/toolkit";
 import {
-  persistStore,
   persistReducer,
   FLUSH,
   REHYDRATE,
@@ -38,9 +37,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    })
-      .concat(sagaMiddleware)
-      .concat(logger),
+    }).concat(sagaMiddleware, logger),
 });
 
 sagaMiddleware.run(userSaga);

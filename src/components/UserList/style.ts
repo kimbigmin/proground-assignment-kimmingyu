@@ -24,4 +24,8 @@ export const Layout = styled.li`
   .score {
     font-weight: 600;
   }
+
+  .blocked {
+    margin: 0 auto;
+  }
 `;

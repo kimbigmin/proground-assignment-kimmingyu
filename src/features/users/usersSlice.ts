@@ -48,7 +48,8 @@ export const usersSlice = createSlice({
       state.hasMore = false;
     },
     setBlock: (state, action: PayloadAction<number>) => {
-      state.userList[action.payload].isBlocked = true;
+      state.userList[action.payload].isBlocked =
+        !state.userList[action.payload].isBlocked;
     },
     setPage: (state) => {
       state.currentPage += 20;
