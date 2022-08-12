@@ -1,19 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-
-interface User {
-  image: string;
-  serialNumber: string;
-  price: string;
-  isBlocked?: boolean;
-}
-
-interface UserList {
-  userList: User[];
-  hasMore: boolean;
-  isLoading: boolean;
-  currentPage: number;
-}
+import { UserList, User } from "../../types";
 
 const initialState: UserList = {
   userList: [],
@@ -26,10 +13,10 @@ export const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    getUserData: (state, action: PayloadAction<any>) => {
+    getUserData: (state, action: PayloadAction<number>) => {
       state.isLoading = true;
     },
-    getUserDataSuccess: (state, action: PayloadAction<any>) => {
+    getUserDataSuccess: (state, action: PayloadAction<User[]>) => {
       let setHasMore;
       console.log(action);
       if (action.payload !== undefined) {

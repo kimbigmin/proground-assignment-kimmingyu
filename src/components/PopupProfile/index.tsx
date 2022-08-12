@@ -3,18 +3,13 @@ import * as Style from "./style";
 import { setBlock } from "../../features/users/usersSlice";
 import { useDispatch } from "react-redux";
 import block from "../../assets/block.png";
+import { ProfileProps } from "../../types";
 
-function PopupProfile({
-  userData,
-  setIsOpenProfile,
-}: {
-  userData: any;
-  setIsOpenProfile: any;
-}) {
+function PopupProfile({ userData, setIsOpenProfile }: ProfileProps) {
   const dispatch = useDispatch();
 
   const handleBlock = () => {
-    dispatch(setBlock(userData.index));
+    dispatch(setBlock(+userData.index!));
     setIsOpenProfile(false);
   };
 

@@ -7,27 +7,31 @@ import { getUserData, setPage } from "../../features/users/usersSlice";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Profile from "../PopupProfile";
 import CircularProgress from "@mui/material/CircularProgress";
+import { RootState } from "../../store";
+import { User } from "../../types";
 
 function RankBoard({ isForHome }: { isForHome: boolean }) {
   const dispatch = useDispatch();
 
   // Redux Store로부터 각종 필요한 데이터를 가져옵니다.
-  const rank = useSelector((state: any) => state.users.userList);
-  const hasMore = useSelector((state: any) => state.users.hasMore);
-  const page = useSelector((state: any) => state.users.currentPage);
+  const {
+    userList: rank,
+    hasMore,
+    currentPage: page,
+  } = useSelector((state: RootState) => state.users);
 
   // Home의 리더 보드라면 유저 리스트를 10개까지 만 잘라서 렌더링 해줍니다.
   const copyRank = isForHome ? [...rank].slice(0, 10) : [...rank];
 
   // 렌더링 할 유저리스트 컴포넌트를 생성합니다.
-  const userLists = copyRank.map((el: any, idx: number) => (
-    <UserList key={idx} userData={{ ...el, idx }}></UserList>
+  const userLists = copyRank.map((el: User, index: number) => (
+    <UserList key={index} userData={{ ...el, index }}></UserList>
   ));
 
   // 프로필 클릭 여부 state
   const [isOpenProfile, setIsOpenProfile] = useState(false);
   // 클릭한 유저 정보를 담는 state
-  const [clickedUser, setClickedUser] = useState({});
+  const [clickedUser, setClickedUser] = useState<User>();
 
   // 처음 데이터 20개만 useEffect로 불러옵니다.
   useEffect(() => {
@@ -66,28 +70,30 @@ function RankBoard({ isForHome }: { isForHome: boolean }) {
   );
 
   // 여백을 누르면 프로필을 닫는 이벤트 핸들러입니다.
-  window.addEventListener("click", (e: any) => {
-    if (e.target.nodeName === "SECTION") {
+  window.addEventListener("click", (e: Event) => {
+    const target = e.target as HTMLElement;
+    if (target.nodeName === "SECTION") {
       setIsOpenProfile(false);
     }
   });
 
+  const handleListClick = (e: React.MouseEvent): void => {
+    const target = e.target as HTMLElement;
+    const $li = target.closest("li") as HTMLLIElement;
+    const { index } = $li.dataset;
+    setIsOpenProfile(true);
+    if (index) {
+      setClickedUser({ ...rank[+index], index });
+    }
+  };
+
   return (
     <Style.Layout isForHome={isForHome} isOpen={isOpenProfile}>
       {isForHome ? <Title title="Leader Board" moreBtn="View All" /> : null}
-      <div
-        className="rank-container"
-        onClick={(e: any) => {
-          const $li = e.target.closest("li");
-          const { index } = $li.dataset;
-
-          setIsOpenProfile(true);
-          setClickedUser({ ...rank[index], index });
-        }}
-      >
+      <div className="rank-container" onClick={handleListClick}>
         {isForHome ? userLists : userListForBoard}
       </div>
-      {isOpenProfile ? (
+      {isOpenProfile && clickedUser ? (
         <Profile userData={clickedUser} setIsOpenProfile={setIsOpenProfile} />
       ) : null}
     </Style.Layout>

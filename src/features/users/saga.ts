@@ -1,12 +1,7 @@
 import axios from "axios";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { getUserDataSuccess, getUserDataFailure } from "./usersSlice";
-
-interface User {
-  image: string;
-  serialNumber: string;
-  price: string;
-}
+import { User } from "../../types";
 
 const REQUEST_URL =
   "https://mxl2ywa4zhlvwjymvb5gnc247a0qfndn.lambda-url.ap-northeast-2.on.aws";
@@ -15,7 +10,7 @@ axios.defaults.baseURL = REQUEST_URL;
 
 const getUsers = async (page: number) => {
   const response = await axios.get(`/?limit=${20}&offset=${page}`);
-  const refinedData = response.data.map((el: any) => {
+  const refinedData = response.data.map((el: User) => {
     return { ...el, isBlocked: false };
   });
   return refinedData;
