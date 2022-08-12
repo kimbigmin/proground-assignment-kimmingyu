@@ -13,8 +13,12 @@ export const Layout = styled.div`
   li {
     display: flex;
     align-items: center;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  img {
+    width: 20px;
   }
 
   p {

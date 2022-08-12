@@ -1,22 +1,22 @@
 import * as React from "react";
 import * as Style from "./style";
-import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
-import CookieIcon from "@mui/icons-material/Cookie";
+import cnk from "../../assets/CNK.png";
+import grnd from "../../assets/GRND.png";
+import klay from "../../assets/KLAY.png";
 
 function CoinStatus() {
   return (
     <Style.Layout>
       <li>
-        <CurrencyBitcoinIcon fontSize="small" color="warning" />
+        <img src={cnk} alt="cnk" />
         <p>{"12.4"}</p>
       </li>
       <li>
-        <MonetizationOnIcon fontSize="small" color="success" />
+        <img src={grnd} alt="cnk" />
         <p>{"12.4"}</p>
       </li>
       <li>
-        <CookieIcon fontSize="small" />
+        <img src={klay} alt="cnk" />
         <p>{"12.4"}</p>
       </li>
     </Style.Layout>
