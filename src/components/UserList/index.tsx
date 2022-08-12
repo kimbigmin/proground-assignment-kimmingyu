@@ -2,6 +2,7 @@ import React from "react";
 import * as Style from "./style";
 import block from "../../assets/block.png";
 import { User } from "../../types";
+import convertNumber from "../../utils/convertNumber";
 
 function UserList({ userData }: { userData: User }) {
   const userInfo = userData.isBlocked
@@ -11,12 +12,12 @@ function UserList({ userData }: { userData: User }) {
   return (
     <Style.Layout data-index={userData.index}>
       <>
+        <p className="rank">{+userData.index + 1}</p>
         <div className="info">
-          <p className="rank">{+userData.index + 1}</p>
           <img src={userInfo.image} alt="user-logo" />
           <p className="nick-name">{userInfo.serialNumber}</p>
         </div>
-        <p className="score">{userData.price}</p>
+        <p className="score">{convertNumber(userData.price)}</p>
       </>
     </Style.Layout>
   );
