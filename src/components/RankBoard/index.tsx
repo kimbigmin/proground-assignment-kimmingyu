@@ -25,7 +25,7 @@ function RankBoard({ isForHome }: { isForHome: boolean }) {
 
   // 렌더링 할 유저리스트 컴포넌트를 생성합니다.
   const userLists = copyRank.map((el: User, index: number) => (
-    <UserList key={index} userData={{ ...el, index }}></UserList>
+    <UserList key={el.serialNumber} userData={{ ...el, index }}></UserList>
   ));
 
   // 프로필 클릭 여부 state
@@ -33,7 +33,7 @@ function RankBoard({ isForHome }: { isForHome: boolean }) {
   // 클릭한 유저 정보를 담는 state
   const [clickedUser, setClickedUser] = useState<User>();
 
-  // 처음 데이터 20개만 useEffect로 불러옵니다.
+  // 처음 유저리스트가 비어있을 때 데이터 20개만 useEffect로 불러옵니다.
   useEffect(() => {
     if (rank.length === 0) {
       dispatch(getUserData(0));
@@ -43,7 +43,7 @@ function RankBoard({ isForHome }: { isForHome: boolean }) {
   // 이후 나머지 데이터는 무한 스크롤 핸들러를 통해 불러옵니다.
   const fetchUsers = () => {
     setTimeout(() => {
-      if (hasMore) {
+      if (hasMore && rank.length <= 180) {
         dispatch(setPage());
         dispatch(getUserData(page));
       }
@@ -57,10 +57,12 @@ function RankBoard({ isForHome }: { isForHome: boolean }) {
       next={fetchUsers}
       hasMore={hasMore}
       loader={
-        <div className="loading">
-          <CircularProgress size="2rem" />
-          <h4>Loading</h4>
-        </div>
+        rank.length <= 180 && (
+          <div className="loading">
+            <CircularProgress size="2rem" />
+            <h4>Loading</h4>
+          </div>
+        )
       }
     >
       {userLists}
@@ -77,13 +79,16 @@ function RankBoard({ isForHome }: { isForHome: boolean }) {
     }
   });
 
+  // 유저리스트 클릭 핸들러 - (리더보드에서만 핸들러 실행)
   const handleListClick = (e: React.MouseEvent): void => {
-    const target = e.target as HTMLElement;
-    const $li = target.closest("li") as HTMLLIElement;
-    const { index } = $li.dataset;
-    setIsOpenProfile(true);
-    if (index) {
-      setClickedUser({ ...rank[+index], index });
+    if (!isForHome) {
+      const target = e.target as HTMLElement;
+      const $li = target.closest("li") as HTMLLIElement;
+      const { index } = $li.dataset;
+      setIsOpenProfile(true);
+      if (index) {
+        setClickedUser({ ...rank[+index], index });
+      }
     }
   };
 
