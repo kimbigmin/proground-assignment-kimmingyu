@@ -8,7 +8,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Profile from "../PopupProfile";
 import CircularProgress from "@mui/material/CircularProgress";
 import { RootState } from "../../store";
-import { User } from "../../types";
+import { User } from "../../types/type";
 
 function RankBoard({ isForHome }: { isForHome: boolean }) {
   const dispatch = useDispatch();

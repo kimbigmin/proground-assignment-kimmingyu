@@ -1,7 +1,7 @@
 import axios from "axios";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { getUserDataSuccess, getUserDataFailure } from "./usersSlice";
-import { User } from "../../types";
+import { User } from "../../types/type";
 
 const REQUEST_URL =
   "https://mxl2ywa4zhlvwjymvb5gnc247a0qfndn.lambda-url.ap-northeast-2.on.aws";

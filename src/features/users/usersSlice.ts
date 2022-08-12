@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { UserList, User } from "../../types";
+import { UserList, User } from "../../types/type";
 
 const initialState: UserList = {
   userList: [],

@@ -3,7 +3,7 @@ import * as Style from "./style";
 import { setBlock } from "../../features/users/usersSlice";
 import { useDispatch } from "react-redux";
 import block from "../../assets/block.png";
-import { ProfileProps } from "../../types";
+import { ProfileProps } from "../../types/type";
 
 function PopupProfile({ userData, setIsOpenProfile }: ProfileProps) {
   const dispatch = useDispatch();
