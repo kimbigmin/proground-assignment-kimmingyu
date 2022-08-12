@@ -20,7 +20,6 @@ export function* getUsersList(action: { type: string; payload: number }) {
   const params = action.payload;
   try {
     const response: User[] = yield call(getUsers, params);
-    console.log(response);
     yield put(getUserDataSuccess(response));
   } catch (err) {
     yield put(getUserDataFailure);
