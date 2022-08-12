@@ -8,7 +8,7 @@ function DailyScore() {
     <Style.Layout>
       <div className="score-box">
         <Title title="Daily Score" />
-        <StatusBox type="dailyScore" statusValue={314} />
+        <StatusBox type="dailyScore" statusValue={"170232"} />
       </div>
     </Style.Layout>
   );

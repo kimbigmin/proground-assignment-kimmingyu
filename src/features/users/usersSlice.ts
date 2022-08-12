@@ -18,7 +18,6 @@ export const usersSlice = createSlice({
     },
     getUserDataSuccess: (state, action: PayloadAction<User[]>) => {
       let setHasMore;
-      console.log(action);
       if (action.payload !== undefined) {
         setHasMore = action.payload.length !== 0 ? true : false;
       } else {

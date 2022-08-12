@@ -1,4 +1,3 @@
-import * as React from "react";
 import * as Style from "./style";
 import cnk from "../../assets/CNK.png";
 import grnd from "../../assets/GRND.png";

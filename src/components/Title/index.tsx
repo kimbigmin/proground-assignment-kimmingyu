@@ -7,11 +7,9 @@ function Title({ title, moreBtn }: { title: string; moreBtn?: string }) {
     <Style.Layout>
       <h2>{title}</h2>
       {moreBtn ? (
-        <button className="more-view">
-          <Link to="/leader-board" state={{ title: "Leader Board" }}>
-            {moreBtn}{" "}
-          </Link>
-        </button>
+        <Link to="/leader-board" state={{ title: "Leader Board" }}>
+          <button className="more-view">{moreBtn}</button>
+        </Link>
       ) : null}
     </Style.Layout>
   );

@@ -7,7 +7,7 @@ function EstimatedWalk() {
   return (
     <Style.Layout>
       <Title title="Estimated WALK" />
-      <StatusBox type="estimatedWalk" statusValue={140} />
+      <StatusBox type="estimatedWalk" statusValue={"14013"} />
     </Style.Layout>
   );
 }
