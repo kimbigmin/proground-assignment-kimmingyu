@@ -11,8 +11,9 @@ export const Layout = styled.li`
   .info {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 9rem;
+    width: 8rem;
+    justify-content: space-between;
+    margin-right: 5rem;
 
     img {
       border-radius: 50%;
@@ -21,8 +22,18 @@ export const Layout = styled.li`
     }
   }
 
+  .nick-name {
+    width: 4rem;
+  }
+
+  .rank {
+    width: 1rem;
+  }
+
   .score {
     font-weight: 600;
+    width: 3rem;
+    text-align: right;
   }
 
   .blocked {

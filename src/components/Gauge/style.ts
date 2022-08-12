@@ -33,13 +33,35 @@ export const Layout = styled.div<{ percent: number }>`
         width: ${(props) => props.percent}%;
       }
     }
+  }
 
-    p {
-      margin-right: 10px;
-      font-size: 0.7rem;
-      transition-delay: 1s;
-      font-weight: 600;
-      margin-top: 3px;
+  p {
+    margin-right: 8px;
+    font-size: 0.7rem;
+    transition-delay: 1s;
+    font-weight: 600;
+
+    animation-name: percentAnimation;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+
+    @keyframes percentAnimation {
+      0% {
+        font-size: 0rem;
+      }
+      40% {
+        font-size: 1rem;
+        color: red;
+      }
+      60% {
+        font-size: 1.5rem;
+      }
+      90% {
+        font-size: 1rem;
+      }
+      100% {
+        font-size: 0.7rem;
+      }
     }
   }
 `;

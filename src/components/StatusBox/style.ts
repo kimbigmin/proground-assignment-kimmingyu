@@ -32,7 +32,7 @@ export const Layout = styled.article<{ type: string }>`
 
   .top-text,
   .bottom-text {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 0.9rem;
   }
 

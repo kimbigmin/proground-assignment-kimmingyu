@@ -3,13 +3,14 @@ import * as Style from "./style";
 import Gauge from "../Gauge";
 import coin from "../../assets/coin.png";
 import styled from "styled-components";
+import convertNumber from "../../utils/convertNumber";
 
 function StatusBox({
   type,
   statusValue,
 }: {
   type: "dailyScore" | "estimatedWalk";
-  statusValue: number;
+  statusValue: string;
 }) {
   const percent = 69;
 
@@ -32,7 +33,7 @@ function StatusBox({
         <p className="top-text">{statusType[type].topText}</p>
       )}
       <h3>
-        <span className="walk-number">{statusValue}</span>
+        <span className="walk-number">{convertNumber(statusValue)}</span>
         <span className="unit">{statusType[type].unit}</span>
       </h3>
 
@@ -54,13 +55,12 @@ function StatusBox({
 const CoinAnimation = styled.div`
   position: relative;
   bottom: 3rem;
-  left: 4rem;
 
   .coin1 {
     position: absolute;
     width: 90px;
     top: -2rem;
-    right: 5.5rem;
+    right: 1.5rem;
     animation-name: coinAnimation;
     animation-duration: 1s;
     animation-delay: 1s;
@@ -74,7 +74,7 @@ const CoinAnimation = styled.div`
     position: absolute;
     width: 60px;
     top: -2rem;
-    right: 4rem;
+    right: 0rem;
     animation-name: coinAnimation;
     animation-duration: 2s;
     animation-delay: 1s;
