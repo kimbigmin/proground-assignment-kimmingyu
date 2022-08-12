@@ -1,22 +1,12 @@
-import React from "react";
 import GlobalStyle from "./GlobalStyle";
-import Header from "./components/Header";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import LeaderBoard from "./pages/LeaderBoard";
+import AnimatedRoutes from "./components/AnimatedRoutes";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <GlobalStyle />
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/leader-board" element={<LeaderBoard />}></Route>
-        </Routes>
-      </Router>
-    </div>
+      <AnimatedRoutes />
+    </>
   );
 }
 
