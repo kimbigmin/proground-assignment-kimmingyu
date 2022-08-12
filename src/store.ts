@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import commonReducer from "./features/common/commonSlice";
 import usersReducer from "./features/users/usersSlice";
 import createSagaMiddleware from "redux-saga";
 import userSaga from "./features/users/saga";
@@ -23,7 +22,6 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  common: commonReducer,
   users: usersReducer,
 });
 
