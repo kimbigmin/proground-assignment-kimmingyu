@@ -1,4 +1,4 @@
-const convertNumber = (num: string) => {
+const convertNumber = (num: string): string => {
   const reversedNumArr = num.split("").reverse();
   let output: string[] = [];
 

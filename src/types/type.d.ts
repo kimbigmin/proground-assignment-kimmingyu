@@ -19,3 +19,17 @@ export interface ProfileProps {
   userData: User;
   setIsOpenProfile: Dispatch<SetStateAction<boolean>>;
 }
+
+export interface StatusBoxProps {
+  type: "dailyScore" | "estimatedWalk";
+  statusValue: string;
+}
+
+export interface TitleProps {
+  title: string;
+  moreBtn?: string;
+}
+
+export interface RankBoardProps {
+  isForHome: boolean;
+}

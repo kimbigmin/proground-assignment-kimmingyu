@@ -1,17 +1,11 @@
-import React from "react";
 import * as Style from "./style";
 import Gauge from "../Gauge";
 import coin from "../../assets/coin.png";
 import styled from "styled-components";
 import convertNumber from "../../utils/convertNumber";
+import { StatusBoxProps } from "../../types/type";
 
-function StatusBox({
-  type,
-  statusValue,
-}: {
-  type: "dailyScore" | "estimatedWalk";
-  statusValue: string;
-}) {
+function StatusBox({ type, statusValue }: StatusBoxProps) {
   const percent = 69;
 
   const statusType = {

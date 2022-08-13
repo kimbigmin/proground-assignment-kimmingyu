@@ -1,4 +1,3 @@
-import React from "react";
 import * as Style from "./style";
 import block from "../../assets/block.png";
 import { User } from "../../types/type";

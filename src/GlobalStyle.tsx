@@ -5,7 +5,7 @@ import "./assets/fonts/font.css";
 const GlobalStyle = createGlobalStyle`
   ${reset}
   body {
-    font-family: 'Roboto';
+    font-family: 'Roboto', serif;
     padding: 0;
     width: 100%;
     max-width: 786px;

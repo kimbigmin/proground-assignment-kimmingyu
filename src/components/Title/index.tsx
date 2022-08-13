@@ -1,8 +1,8 @@
-import React from "react";
 import * as Style from "./style";
 import { Link } from "react-router-dom";
+import { TitleProps } from "../../types/type";
 
-function Title({ title, moreBtn }: { title: string; moreBtn?: string }) {
+function Title({ title, moreBtn }: TitleProps) {
   return (
     <Style.Layout>
       <h2>{title}</h2>

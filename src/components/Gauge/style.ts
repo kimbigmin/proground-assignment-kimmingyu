@@ -6,7 +6,7 @@ export const Layout = styled.div<{ percent: number }>`
   background-color: #eaeaea;
   width: 100%;
 
-  span {
+  .gauge {
     width: ${(props) => props.percent}%;
     height: 0.9rem;
     background-color: #efb2c5;
@@ -35,7 +35,9 @@ export const Layout = styled.div<{ percent: number }>`
     }
   }
 
-  p {
+  .percent {
+    position: absolute;
+    right: 0;
     margin-right: 8px;
     font-size: 0.7rem;
     transition-delay: 1s;

@@ -29,7 +29,7 @@ export const usersSlice = createSlice({
         state.userList = [...state.userList, ...action.payload];
       }
     },
-    getUserDataFailure: (state, { payload: error }) => {
+    getUserDataFailure: (state) => {
       state.isLoading = false;
       state.hasMore = false;
     },

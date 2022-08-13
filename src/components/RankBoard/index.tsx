@@ -2,23 +2,22 @@ import React, { useState, useEffect } from "react";
 import * as Style from "./style";
 import UserList from "../UserList";
 import Title from "../Title";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../features/hooks";
 import { getUserData, setPage } from "../../features/users/usersSlice";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Profile from "../PopupProfile";
 import CircularProgress from "@mui/material/CircularProgress";
-import { RootState } from "../../store";
-import { User } from "../../types/type";
+import { User, RankBoardProps } from "../../types/type";
 
-function RankBoard({ isForHome }: { isForHome: boolean }) {
-  const dispatch = useDispatch();
+function RankBoard({ isForHome }: RankBoardProps) {
+  const dispatch = useAppDispatch();
 
   // Redux Store로부터 각종 필요한 데이터를 가져옵니다.
   const {
     userList: rank,
     hasMore,
     currentPage: page,
-  } = useSelector((state: RootState) => state.users);
+  } = useAppSelector((state) => state.users);
 
   // Home의 리더 보드라면 유저 리스트를 10개까지 만 잘라서 렌더링 해줍니다.
   const copyRank = isForHome ? [...rank].slice(0, 10) : [...rank];
@@ -28,9 +27,8 @@ function RankBoard({ isForHome }: { isForHome: boolean }) {
     <UserList key={el.serialNumber} userData={{ ...el, index }}></UserList>
   ));
 
-  // 프로필 클릭 여부 state
   const [isOpenProfile, setIsOpenProfile] = useState(false);
-  // 클릭한 유저 정보를 담는 state
+
   const [clickedUser, setClickedUser] = useState<User>();
 
   // 처음 유저리스트가 비어있을 때 데이터 20개만 useEffect로 불러옵니다.
@@ -79,7 +77,7 @@ function RankBoard({ isForHome }: { isForHome: boolean }) {
     }
   });
 
-  // 유저리스트 클릭 핸들러 - (리더보드에서만 핸들러 실행)
+  // 유저리스트 클릭 핸들러 - (이벤트 위임을 활용하여 구현)
   const handleListClick = (e: React.MouseEvent): void => {
     if (!isForHome) {
       const target = e.target as HTMLElement;

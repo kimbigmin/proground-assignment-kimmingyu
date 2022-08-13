@@ -1,4 +1,3 @@
-import React from "react";
 import * as Style from "./style";
 import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 

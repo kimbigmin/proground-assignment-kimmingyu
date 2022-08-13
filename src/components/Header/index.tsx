@@ -1,4 +1,3 @@
-import * as React from "react";
 import * as Style from "./style";
 import CoinStatus from "../CoinStatus";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
